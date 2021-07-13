@@ -1,0 +1,92 @@
+{
+  "tweets": [
+    {
+      "sender": {
+        "name": "سارا خلیلی",
+        "id": "@sara_kh22",
+        "img": "/images/xiaomi.png"
+      },
+      "text": "برای دیدن #گوشی به اینترنت مراجعه کنید",
+      "likes": 34
+    },
+    {
+      "sender": {
+        "name": "حسام مینویی",
+        "id": "@minuei_hesam",
+        "img": "/images/bilgates.png"
+      },
+      "text": "ثباقاب اهقاب هاهقشا بهاشثهق لبهاشث الهاثقه ل",
+      "likes": 26
+    },
+    {
+      "sender": {
+        "name": "سارا خلیلی",
+        "id": "@sara_kh22",
+        "img": "/images/xiaomi.png"
+      },
+      "text": "برای دین گوشی های #شیاومی به  آن مراجعه کنید",
+      "likes": 71
+    },
+    {
+      "sender": {
+        "name": "حسام مینویی",
+        "id": "@minuei_hesam",
+        "img": "/images/bilgates.png"
+      },
+      "text": "برای دین گوشی های شیاومی به #نمایندگی آن مراجعه کنید",
+      "likes": 9
+    },
+    {
+      "id": 304,
+      "sender": {
+        "name": "بنیامین طهوری",
+        "id": "@bistTeam.ir",
+        "img": "/images/xiaomi.png"
+      },
+      "text": "dsgsgsysy",
+      "likes": 1000
+    },
+    {
+      "id": 21,
+      "sender": {
+        "name": "بنیامین طهوری",
+        "id": "@bistTeam.ir",
+        "img": "/images/xiaomi.png"
+      },
+      "text": "سلام",
+      "likes": 1000
+    },
+    {
+      "id": 612,
+      "sender": {
+        "name": "بنیامین طهوری",
+        "id": "@bistTeam.ir",
+        "img": "/images/xiaomi.png"
+      },
+      "text": "srwrt",
+      "likes": 1000
+    }
+  ],
+  "users": [
+    {
+      "name": "Xiaomi",
+      "id": "@Xiaomi",
+      "img": "/images/xiaomi.png"
+    },
+    {
+      "name": "bilgates",
+      "id": "@bilgates",
+      "img": "/images/bilgates.png"
+    },
+    {
+      "name": "Mahsa",
+      "id": "@mahsagh433",
+      "img": "/images/prof.png"
+    }
+  ],
+  "hashtags": [
+    "پرچم_دار",
+    "کرونا ویروس",
+    "پرمخاطبین"
+  ]
+}
