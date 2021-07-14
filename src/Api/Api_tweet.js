@@ -47,4 +47,14 @@ export const newTweetRequest=(data,callback)=>{
     });
 };
 
+export const LikeTweetRequest=(id,callback)=>{
+    getAxiosInstanceAPI().get("likeTweet/"+id)
+        .then(responsive=>{
+            const data=responsive.data;
+            callback(true,data);
+        }).catch(error=>{
+        console.log(error);
+        callback(false,error);
+    });
+};
 

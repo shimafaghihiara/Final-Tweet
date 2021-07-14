@@ -7,6 +7,7 @@ import TweetList from "./components/tweetList";
 import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
 import {getAllTweets} from "../../Api/Api_tweet";
+import { settweetList, useTweetDispatch, useTweetState } from '../../context/TweetContext';
 
 
 
@@ -15,7 +16,9 @@ const Home = () => {
     const classes=useStyle();
 
 //data fetching by axios
-    const [tweets,setTweets]=useState([]);
+   // const [tweets,setTweets]=useState([]);
+   const {tweetList:tweets}=useTweetState();
+   const tweetDispatch=useTweetDispatch();
 
     useEffect(()=>{
        updateTweet();
@@ -27,7 +30,7 @@ const Home = () => {
                 if(!isOk)
                     return alert ('ناموفق بود')
                 else
-                    setTweets(data)
+                    settweetList(tweetDispatch,data)
             }
         );
     }
