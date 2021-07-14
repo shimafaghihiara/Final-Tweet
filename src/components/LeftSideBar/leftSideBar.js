@@ -111,7 +111,7 @@ const LeftSideBar = () => {
                 {
                     users.map((item, index) => {
                         return(
-                             <Link to={"/Users/"+item.name}>
+                             <Link to={"/Users/"+item._id+"/"+item.name}>
                                 <Tweeter name={item.name} id={item.username} img={item.image}/>
                                 {index !== users.length-1 &&
                                 <Divider style={{marginLeft: -24, marginRight: -24}}/>}

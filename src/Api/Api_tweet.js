@@ -25,6 +25,18 @@ export const getTweetByHashtag=(hashTag,callback)=>{
 
 };
 
+export const getTweetByUser=(user,callback)=>{
+    getAxiosInstanceAPI().post("getAllTweet",{user})
+        .then(responsive=>{
+            const data=responsive.data;
+            callback(true,data);
+        }).catch(error=>{
+        console.log(error);
+        callback(false,error);
+    })
+
+};
+
 export const getAllUsers=(callback)=>{
     getAxiosInstanceAPI().get("getAllUser")
         .then(responsive=>{
