@@ -4,25 +4,30 @@ import Header from "../../components/header/header";
 import {Divider} from "@material-ui/core";
 import TweetList from "../home/components/tweetList";
 import axios from "axios";
-import {getAllTweets} from "../../Api/Api_tweet";
+import {getAllTweets, getTweetByHashtag} from "../../Api/Api_tweet";
+import { toast } from 'react-toastify';
+import { useTweetDispatch, useTweetState ,settweetList} from '../../context/TweetContext';
+import {useLocation} from "react-router-dom";
 
 
 
 const TweetByHashtag = (props) => {
 
     const classes=useStyle();
-
-    const [tweets,setTweets]=useState([]);
+    const Location=useLocation();
+    //const [tweets,setTweets]=useState([]);
+    const {tweetList:tweets}=useTweetState();
+    const tweetDispatch=useTweetDispatch();
 
     useEffect(()=>{
-        getAllTweets((isOk,data)=>{
+        getTweetByHashtag(props.match.params.hashtag,(isOk,data)=>{
                 if(!isOk)
-                    return alert(data.massage);
+                    return toast.error(data.massage);
                 else
-                    setTweets(data)
+                    settweetList(tweetDispatch,data)
             }
         );
-    },[])
+    },[Location])
 
     return (
         <div className={classes.root}>
