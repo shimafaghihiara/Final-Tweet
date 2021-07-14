@@ -5,7 +5,8 @@ import classnames from "classnames";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {newTweetRequest} from "../../../Api/Api_tweet";
-import { useTweetState, settweetText as settweet, useTweetDispatch } from '../../../context/TweetContext';
+import { useTweetState, settweetText as settweet, useTweetDispatch,updateHashTagList } from '../../../context/TweetContext';
+import { AllInclusiveRounded } from '@material-ui/icons';
 
 const NewTweet = ({updateTweet}) => {
 
@@ -121,6 +122,8 @@ const NewTweet = ({updateTweet}) => {
            settweet(tweetDispatch,"");
            setImagePath();
            setImageFile();
+           if(tweetText.includes("#"))
+           updateHashTagList(tweetDispatch); 
         })
 
     };

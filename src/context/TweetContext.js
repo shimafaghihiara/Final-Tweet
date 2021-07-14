@@ -1,4 +1,5 @@
 import React from "react";
+import { getAllHashtags } from "../Api/Api_tweet";
 
 var TweetStateContext=React.createContext();
 var TweetDispatchContext=React.createContext();
@@ -9,6 +10,8 @@ function tweetReducer(state, action){
             return{...state , tweetText: action.payload};
             case "SET_TWEET_List":
             return{...state ,tweetList: action.payload};
+            case "SET_HASHTAG_List":
+            return{...state ,hashTags: action.payload};
            case "LIKE_TWEET":
                const tweetId=action.payload;
                const foundIndex=state.tweetList.findIndex(item=> item._id===tweetId);
@@ -26,6 +29,7 @@ function TweetProvider({children}){
     var [state, dispatch]= React.useReducer(tweetReducer,{
        tweetText:'',
        tweetList:[],
+       hashTags:[],
     });
     return(
         <TweetStateContext.Provider value={state}>
@@ -55,7 +59,7 @@ function useTweetDispatch(){
 }
 
 
-export{TweetProvider, useTweetState, useTweetDispatch,settweetText,settweetList,LikeTweet};
+export{TweetProvider, useTweetState, useTweetDispatch,settweetText,settweetList,LikeTweet,setHashTagList,updateHashTagList};
 
 //########################################################
 
@@ -76,4 +80,24 @@ function settweetList(dispatch,List){
         type:"SET_TWEET_List",
         payload: List,
     });
+}
+
+function setHashTagList(dispatch,List){
+    dispatch({
+        type:"SET_HASHTAG_List",
+        payload: List,
+    });
+}
+
+function updateHashTagList(dispatch){
+    getAllHashtags((isok,data)=>{
+        if(isok){
+             dispatch({
+        type:"SET_HASHTAG_List",
+        payload: data,
+    });
+        }
+        console.log(data);
+    })
+   
 }

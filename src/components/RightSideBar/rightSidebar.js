@@ -6,17 +6,20 @@ import {ButtonBase} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {getAllHashtags} from "../../Api/Api_tweet";
+import { setHashTagList, useTweetDispatch, useTweetState } from '../../context/TweetContext';
 
 const RightSidebar = () => {
     const classes=useStyle();
-    const [hashtags,setHashtags]=useState([]);
+    //const [hashtags,setHashtags]=useState([]);
+    const {hashTags:hashtags}=useTweetState();
+    const tweetDispatch=useTweetDispatch();
 
     useEffect(()=>{
         getAllHashtags((isOk,data)=>{
                 if(!isOk)
                     return alert(data.message)
                 else
-                    setHashtags(data)
+                setHashTagList(tweetDispatch,data)
             }
         );
     },[])
