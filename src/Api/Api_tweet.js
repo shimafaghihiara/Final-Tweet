@@ -82,3 +82,13 @@ export const LikeTweetRequest=(id,callback)=>{
     });
 };
 
+export const getProfileRequest=(callback)=>{
+    getAxiosInstanceAPI().get("getProfile")
+        .then(responsive=>{
+            const data=responsive.data;
+            callback(true,data);
+        }).catch(error=>{
+        console.log(error);
+        callback(false,error);
+    });
+};

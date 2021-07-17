@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useStyle from './Styles';
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import RightSidebar from "../RightSideBar/rightSidebar";
 import Divider from '@material-ui/core/Divider';
 import LeftSideBar from "../LeftSideBar/leftSideBar";
@@ -11,11 +12,40 @@ import {BrowserRouter,Route,Switch} from "react-router-dom";
 import Posts from "../../pages/test/Posts";
 import DetailPosts from "../../pages/test/DetailPosts";
 import Page404 from "../../pages/page404/Page404";
+import { getProfileRequest } from "../../Api/Api_tweet";
+import { toast } from "react-toastify";
+import {useHistory} from "react-router-dom";
 
 
+ 
 const Layout=(props)=>{
     const classes=useStyle();
+    const history=useHistory();
+    const [wait,setWait]=useState(true);
 
+useEffect(()=>{
+    getProfileRequest((isok,data)=>
+    {
+        if(!isok){
+        toast.error(data);
+        localStorage.clear();
+        return history.push("/login");
+        }
+        setWait(false);
+        localStorage.setItem("name",data.name);
+        localStorage.setItem("username",data.username);
+        localStorage.setItem("image",data.image);
+        localStorage.setItem("x-auth-token",data["x-auth-token"]);
+    })
+
+},[])
+
+if(wait)
+return <div>
+    <CircularProgress  className={"uni_m_b_small"}/>
+   <Typography> لطفا شکیبا باشید
+   </Typography>
+</div>;
 
     return(
         <div className={classes.root}>
