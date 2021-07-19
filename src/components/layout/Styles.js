@@ -37,6 +37,22 @@ const useStyle = makeStyles({
             backgroundColor: 'blue !important',
 
 
+        },
+        waitt:{
+            display:"flex",
+            flexDirection:"column",
+            position:"absolute",
+            left:"30%",
+            width:"40%",
+            height:"20%",
+            backgroundColor:"red",
+            textAlign:"center",
+            alignItems:"center",
+            marginTop:"20%",
+            paddingTop:"30px",
+            borderColor:"black",
+            borderRadius:"20px",
+            
         }
 
 

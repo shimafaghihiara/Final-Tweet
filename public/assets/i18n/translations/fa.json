@@ -1,0 +1,37 @@
+{
+    "home":"خانه",
+    "appName":"توییتر فارسی",
+    "hashTagTitle": "داغ ترین هشتگ ها",
+    "userListTitle":"بهترین خبرنگاران",
+    "twitbtn":"توییت",
+    "editProfilePhotoMenu":"ویرایش عکس پروفایل",
+    "changeLanguageMenu":"تغییر زبان به انگلیسی",
+    "logoutMenu":"خروج",
+    "namovafagh":"ناموفق بود",
+    "waitt":"لطفا شکیبا باشید",
+    "listError":"ناموفق در گرفتن لیست کاربران",
+    "uploadPhoto":"عکس شما با موفقیت آپلود شد",
+    "editPhoto":"ویرایش عکس پروفایل",
+    "404":"صفحه مورد نظر پیدا نشد",
+    "successSendTwit":"توییت شما با موفقیت ارسال شد",
+    "twittkon":"توییت کن...",
+    "usernameValidator":"باید حتما نام کاربری را وارد کنید",
+    "passwordValidation":"باید رمزعبور را وارد کنید",
+    "loginSuccess":"شما با موفقیت وارد شدید",
+    "enterUsername":"نام کاربری خود را وارد کنید",
+    "fullName":"نام کامل خود را وارد کنید",
+    "enterPass":"پسورد را باید وارد کنید",
+    "enterRePass":"پسورد را با تکرار آن برابر وارد کنید",
+    "successRegister":"شما با موفقیت ثبت نام شدید",
+    "loginbtn":"ورود",
+    "registerbtn":"ثبت نام",
+    "welcome":"به توییتر ما خوش آمدید",
+    "username":"نام کاربری",
+    "password":"رمز عبور",
+    "fullnametext":"نام کامل",
+    "repassword":"تکرار رمز عبور",
+    "TextEmptyTwitt":"این کاربر تابحال توییتی ننوشته است"
+
+
+    
+}

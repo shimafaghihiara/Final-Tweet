@@ -12,6 +12,7 @@ import AuthPage from "../pages/auth/AuthPage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {TweetProvider} from "../context/TweetContext";
+import "../i18n"
 
 const App = () => {
     return (

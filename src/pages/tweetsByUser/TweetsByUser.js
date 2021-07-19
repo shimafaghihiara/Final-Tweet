@@ -7,6 +7,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import axios from "axios";
 import {getAllTweets, getAllUsers, getTweetByUser} from "../../Api/Api_tweet";
 import {useLocation} from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -15,6 +16,7 @@ const TweetByUser = (props) => {
     const classes=useStyle();
     const [tweets,setTweets]=useState([]);
     const Location=useLocation();
+    const {t}=useTranslation();
 
     useEffect(()=>{
 
@@ -33,7 +35,7 @@ const TweetByUser = (props) => {
             <Divider className={classes.divider}/>
             {
                 tweets.length===0 &&
-                <Typography>این کاربر تابحال توییتی ننوشته است</Typography>
+                <Typography>{t("TextEmptyTwitt")}</Typography>
             }
             <TweetList data={tweets}/>
 

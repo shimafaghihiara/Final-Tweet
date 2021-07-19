@@ -7,9 +7,11 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {getAllHashtags} from "../../Api/Api_tweet";
 import { setHashTagList, useTweetDispatch, useTweetState } from '../../context/TweetContext';
+import { useTranslation } from 'react-i18next';
 
 const RightSidebar = () => {
     const classes=useStyle();
+    const {t}=useTranslation();
     //const [hashtags,setHashtags]=useState([]);
     const {hashTags:hashtags}=useTweetState();
     const tweetDispatch=useTweetDispatch();
@@ -33,13 +35,13 @@ const RightSidebar = () => {
                 </Grid>
                 <Grid item>
                     <Typography className={classes.LogoType}>
-                        توییتر فارسی
+                        {t("appName")}
                     </Typography>
                 </Grid>
             </Grid>
             </Link>
                 <Typography className={classes.hashtagTitle}>
-                    داغ ترین هشتگ ها
+                    {t("hashTagTitle")}
                 </Typography>
 
             {

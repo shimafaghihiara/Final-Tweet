@@ -15,6 +15,7 @@ import Page404 from "../../pages/page404/Page404";
 import { getProfileRequest } from "../../Api/Api_tweet";
 import { toast } from "react-toastify";
 import {useHistory} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
  
@@ -22,6 +23,7 @@ const Layout=(props)=>{
     const classes=useStyle();
     const history=useHistory();
     const [wait,setWait]=useState(true);
+    const {t} =useTranslation();
 
 useEffect(()=>{
     getProfileRequest((isok,data)=>
@@ -41,10 +43,9 @@ useEffect(()=>{
 },[])
 
 if(wait)
-return <div>
+return <div className={classes.waitt}>
     <CircularProgress  className={"uni_m_b_small"}/>
-   <Typography> لطفا شکیبا باشید
-   </Typography>
+   <Typography  >{t("waitt")}</Typography>
 </div>;
 
     return(

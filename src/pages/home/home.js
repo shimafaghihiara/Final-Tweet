@@ -8,12 +8,14 @@ import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
 import {getAllTweets} from "../../Api/Api_tweet";
 import { settweetList, useTweetDispatch, useTweetState } from '../../context/TweetContext';
+import { useTranslation } from 'react-i18next';
 
 
 
 const Home = () => {
 
     const classes=useStyle();
+    const {t}=useTranslation();
 
 //data fetching by axios
    // const [tweets,setTweets]=useState([]);
@@ -28,7 +30,7 @@ const Home = () => {
     const updateTweet=()=>{
         getAllTweets((isOk,data)=>{
                 if(!isOk)
-                    return alert ('ناموفق بود')
+                    return alert (t("namovafagh"))
                 else
                     settweetList(tweetDispatch,data)
             }
@@ -37,7 +39,7 @@ const Home = () => {
 
     return (
         <div className={classes.root}>
-          <Header title={"خانه"} icon={<HomeIcon/>}/>
+          <Header title={t("home")} icon={<HomeIcon/>}/>
           <Divider className={classes.divider}/>
           <NewTweet updateTweet={updateTweet}/>
           <TweetList data={tweets}/>

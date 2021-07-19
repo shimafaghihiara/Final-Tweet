@@ -7,6 +7,7 @@ import {toast} from "react-toastify";
 import {newTweetRequest} from "../../../Api/Api_tweet";
 import { useTweetState, settweetText as settweet, useTweetDispatch,updateHashTagList } from '../../../context/TweetContext';
 import { AllInclusiveRounded } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 
 const NewTweet = ({updateTweet}) => {
 
@@ -92,6 +93,7 @@ const NewTweet = ({updateTweet}) => {
 
     const [imageFile,setImageFile]=useState();
     const [imagePath,setImagePath]=useState();
+    const {t}=useTranslation();
 
     // React.useEffect(()=> {
     //     //search do
@@ -104,6 +106,7 @@ const NewTweet = ({updateTweet}) => {
 
     const newTweetClick=()=> {
         const tweetText = tweet;
+        
         if (!tweetText)
             return;
         // const data = {
@@ -117,7 +120,7 @@ const NewTweet = ({updateTweet}) => {
         newTweetRequest(formData, (isok, data) => {
             if (!isok)
                 return toast.error(data);
-            toast.warn("توییت شما با موفقیت ارسال شد");
+            toast.warn(t("successSendTwit"));
             updateTweet();
            settweet(tweetDispatch,"");
            setImagePath();
@@ -155,7 +158,7 @@ const NewTweet = ({updateTweet}) => {
         <div className={classes.newTweet}>
             <Grid container>
                 <img src={getImage()} style={{width:65, height:65,borderRadius:'50%'}}/>
-                <input className={classnames(classes.input,)} placeholder="توییت کن..."
+                <input className={classnames(classes.input,)} placeholder={t("twittkon")}
                        value={tweet} onChange={e=>settweet(tweetDispatch, e.target.value)}/>
                 <input type={"file"} style={{display:"none"}} ref={inputFile} onChange={onchangeImage}/>
             </Grid>
@@ -166,7 +169,7 @@ const NewTweet = ({updateTweet}) => {
                 </div>
             }
             <Grid container direction={"row-reverse"} style={{marginTop: 16}}>
-                <Button variant={"contained"} color={"primary"} onClick={newTweetClick} className={classes.newTweetBtn}>توییت</Button>
+                <Button variant={"contained"} color={"primary"} onClick={newTweetClick} className={classes.newTweetBtn}>{t("twitbtn")}</Button>
                 <IconButton className={classes.newTweetIcon} onClick={selectImg}>
                     <img src={"/images/imagess.png"} style={{width:25}}/>
                 </IconButton>

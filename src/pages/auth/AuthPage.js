@@ -4,6 +4,7 @@ import {Tab, Tabs, Typography} from "@material-ui/core";
 import useStyle from "./Styles";
 import {toast} from "react-toastify";
 import {loginApi, RegisterApi} from "../../Api/Api_auth";
+import { useTranslation } from 'react-i18next';
 
 const AuthPage = () => {
     const LOGIN_TAB_VALUE=1
@@ -16,7 +17,7 @@ const AuthPage = () => {
     const [usernameRegister,setUsernameRegister]=useState();
     const [passwordRegister,setPasswordRegister]=useState();
     const [RepasswordRegister,setRePasswordRegister]=useState();
-
+    const {t}=useTranslation();
 
 
     const handleChange=(e,newValue)=>{
@@ -25,9 +26,9 @@ const AuthPage = () => {
 
     const validateLogin=(user)=>{
         if(!user.username)
-            return "باید حتما یوزرنیم را وارد کنید";
+            return t("usernameValidator");
         if (!user.password)
-            return "باید پسورد را وارد کنید"
+            return t("passwordValidation");
     }
 
     const handleLogin=()=>{
@@ -42,7 +43,7 @@ const AuthPage = () => {
         loginApi(user,(isOk,data)=>{
             if(!isOk)
                 return toast.error(data)
-            toast.success('شما با موفقیت وارد شدید');
+            toast.success(t("loginSuccess"));
             localStorage.setItem("name",data.name);
             localStorage.setItem("username",data.username);
             localStorage.setItem("image",data.image);
@@ -54,13 +55,13 @@ const AuthPage = () => {
 
     const validateRegister=(user)=>{
         if(!user.name)
-           return"نام کامل خود را وارد کنید";
+           return t("fullName");
         if(!user.username)
-            return"نام کاربری خود را وارد کنید";
+            return t("enterUsername");
         if(!user.password)
-            return "پسورد را باید وارد کنید";
+            return t("enterPass");
         if(user.password!=RepasswordRegister)
-            return "پسورد را با تکرار آن برابر وارد کنید";
+            return t("enterRePass");
     };
 
     const handleRegister=()=> {
@@ -76,7 +77,7 @@ const AuthPage = () => {
         RegisterApi(user,(isOk,data)=> {
             if (!isOk)
                 return toast.error(data)
-            toast.success('شما با موفقیت ثبت نام شدید');
+            toast.success(t("successRegister"));
             localStorage.setItem("name", data.name);
             localStorage.setItem("username", data.username);
             localStorage.setItem("image", data.image);
@@ -89,7 +90,7 @@ const AuthPage = () => {
 
     return (
         <Paper className={classes.root}>
-            <Typography className={classes.title}>به توییتر ما خوش آمدید</Typography>
+            <Typography className={classes.title}>{t("welcome")}</Typography>
             <Tabs
                 value={tab}
                 indicatorColor="primary"
@@ -97,28 +98,28 @@ const AuthPage = () => {
                 onChange={handleChange}
                 aria-label="disabled tabs example"
             >
-                <Tab className={classes.tabs} label="ورود" value={LOGIN_TAB_VALUE} />
-                <Tab className={classes.tabs} label="ثبت نام" value={REG_TAB_VALUE}/>
+                <Tab className={classes.tabs} label={t("loginbtn")} value={LOGIN_TAB_VALUE} />
+                <Tab className={classes.tabs} label={t("registerbtn")} value={REG_TAB_VALUE}/>
             </Tabs>
             {tab===LOGIN_TAB_VALUE &&
             <div className={classes.login}>
-                <Typography>نام کاربری</Typography>
+                <Typography>{t("username")}</Typography>
                 <input className={classes.input} value={usernameLogin} onChange={e=>setUsernameLogin(e.target.value)}/>
-                <Typography>رمز عبور</Typography>
+                <Typography>{t("password")}</Typography>
                 <input className={classes.input} value={passwordLogin} onChange={e=>setPasswordLogin(e.target.value)}/>
-                <button  className={classes.btn} onClick={handleLogin}>ورود</button>
+                <button  className={classes.btn} onClick={handleLogin}>{t("loginbtn")}</button>
             </div>}
             {tab===REG_TAB_VALUE &&
             <div className={classes.register}>
-                <Typography>نام کامل</Typography>
+                <Typography>{t("fullnametext")}</Typography>
                 <input className={classes.input} value={FullNameRegister} onChange={e=>setFullNameRegister(e.target.value)}></input>
-                <Typography>نام کاربری</Typography>
+                <Typography>{t("username")}</Typography>
                 <input className={classes.input} value={usernameRegister} onChange={e=>setUsernameRegister(e.target.value)}/>
-                <Typography>رمز عبور</Typography>
+                <Typography>{t("password")}</Typography>
                 <input className={classes.input} value={passwordRegister} onChange={e=>setPasswordRegister(e.target.value)}/>
-                <Typography>تکرار رمز عبور</Typography>
+                <Typography>{t("repassword")}</Typography>
                 <input className={classes.input} value={RepasswordRegister} onChange={e=>setRePasswordRegister(e.target.value)}/>
-                <button className={classes.btn} onClick={handleRegister}>ثبت نام</button>
+                <button className={classes.btn} onClick={handleRegister}> {t("registerbtn")}</button>
             </div>}
 
         </Paper>

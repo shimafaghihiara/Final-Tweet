@@ -8,11 +8,13 @@ import axios from "axios";
 import {getAllUsers} from "../../Api/Api_tweet";
 import {uploadUserPhoto} from "../../Api/Api_auth";
 import {toast} from "react-toastify";
+import { useTranslation } from 'react-i18next';
 
 
 
 const Tweeter=({name,id,img})=>{
     const classes=useStyle();
+    const {t}=useTranslation();
     const getImage=()=>{
         if(img)
             return img;
@@ -44,11 +46,12 @@ const LeftSideBar = () => {
     const [imageFile,setImageFile]=useState();
     const [imagePath,setImagePath]=useState();
     const inputRef=useRef();
+    const {t,i18n}=useTranslation();
 
     useEffect(()=>{
         getAllUsers((isOk,data)=>{
                 if(!isOk)
-                    return toast.error("ناموفق در گرفتن لیست یوزرا")
+                    return toast.error(t("listError"))
                 else
                     setUsers(data)
             }
@@ -72,6 +75,18 @@ const LeftSideBar = () => {
         return "images/prof.png"
     }
 
+    const changeLang=()=>{
+       if(i18n.language==="fa"){
+           localStorage.setItem("lang","en");
+       i18n.changeLanguage("en");
+       }
+       else
+       {
+        localStorage.setItem("lang","fa");
+       i18n.changeLanguage("fa");
+       }
+    };
+
     const handleAvatarChange=(e)=>
     {
         if(e.target.files && e.target.files.length>0) {
@@ -88,7 +103,7 @@ const LeftSideBar = () => {
             uploadUserPhoto(formData,(isok,data)=>{
                 if(!isok)
                     return toast.error(data);
-                toast.success('عکس شما با موفقیت آپلود شد');
+                toast.success(t("uploadPhoto"));
                 localStorage.setItem("image",data.imagePath)
             })
         }
@@ -106,7 +121,7 @@ const LeftSideBar = () => {
                 <input ref={inputRef} type={'file'} style={{display:"none"}} onChange={handleAvatarChange}/>
             </Grid>
             <Grid container direction={"column"} className={classes.tweeterRoot}>
-                <Typography className={classes.tweeterTitle}>بهترین خبرنگاران</Typography>
+                <Typography className={classes.tweeterTitle}>{t("userListTitle")}</Typography>
                 <Divider style={{marginLeft:-24, marginRight: -24}} />
                 {
                     users.map((item, index) => {
@@ -128,13 +143,21 @@ const LeftSideBar = () => {
                 <MenuItem className={classes.Menu} onClick={()=> {
                     inputRef.current.click();
                 }}>
-                    ویرایش عکس پروفایل
+                    {t("editPhoto")}
                 </MenuItem>
                 <MenuItem className={classes.Menu} onClick={()=> {
-                    localStorage.clear();
+                    changeLang();
+                }}>
+                   {t("changeLanguageMenu")}
+                </MenuItem>
+                <MenuItem className={classes.Menu} onClick={()=> {
+                   localStorage.setItem("name","");
+                   localStorage.setItem("username","");
+                   localStorage.setItem("image","");
+                   localStorage.setItem("x-auth-token","");
                     window.location.reload();
                 }}>
-                    خروج
+                   {t("logoutMenu")}
                 </MenuItem>
 
             </Menu>
