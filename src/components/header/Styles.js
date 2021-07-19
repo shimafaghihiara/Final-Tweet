@@ -14,6 +14,11 @@ const useStyle = makeStyles(theme=>({
             fontSize:'1.2rem !important',
             fontWeight:600,
             marginRight:5
+        },
+        Menu2:
+        {
+            padding:'0',
+            marginLeft:'10px'
         }
 
 

@@ -12,7 +12,8 @@ import AuthPage from "../pages/auth/AuthPage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {TweetProvider} from "../context/TweetContext";
-import "../i18n"
+import "../i18n";
+import { LayoutProvider } from '../context/LayoutContext';
 
 const App = () => {
     return (
@@ -21,7 +22,7 @@ const App = () => {
                 <Switch>
                     <PublicRoute path={"/login"} component={AuthPage}/>
                     <PrivateRoute path={"/"} render={()=>
-                    
+                    <LayoutProvider>
                     <TweetProvider> <Layout>
                         <Switch>
                             <Route path={"/"} exact component={Home} />
@@ -31,6 +32,7 @@ const App = () => {
                         </Switch>
                     </Layout>
                     </TweetProvider>
+                    </LayoutProvider>
                     } />
                 </Switch>
             </BrowserRouter>

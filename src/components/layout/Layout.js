@@ -16,6 +16,9 @@ import { getProfileRequest } from "../../Api/Api_tweet";
 import { toast } from "react-toastify";
 import {useHistory} from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@material-ui/styles";
+import { useMediaQuery } from "@material-ui/core";
+import TwittDrawer from "../Drawer/TwittDrawer";
 
 
  
@@ -24,6 +27,8 @@ const Layout=(props)=>{
     const history=useHistory();
     const [wait,setWait]=useState(true);
     const {t} =useTranslation();
+    const theme=useTheme();
+    const isTabletSize=useMediaQuery(theme.breakpoints.down("sm"));
 
 useEffect(()=>{
     getProfileRequest((isok,data)=>
@@ -50,7 +55,9 @@ return <div className={classes.waitt}>
 
     return(
         <div className={classes.root}>
-      <RightSidebar/>
+          { isTabletSize ? <TwittDrawer/>:<RightSidebar/>
+         
+          }
       <Divider orientation={"vertical"} className={classes.divider} />
       <div className={classes.content}>
           {props.children}

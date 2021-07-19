@@ -4,7 +4,10 @@ const useStyle = makeStyles(theme=>({
     root:{
         backgroundColor:'white',
         padding:'1.5rem 1rem',
-        width:'18%'
+        width:'18%',
+        [theme.breakpoints.down('sm')]: {
+            width:'100%',
+        },
 
     },
 
